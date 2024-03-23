@@ -61,7 +61,7 @@ public class TimeServlet extends HttpServlet {
                 utc = "UTC";
             }
         } else {
-            resp.addCookie(new Cookie("timezone", utc));
+            resp.addCookie(new Cookie("lastTimezone", utc));
         }
         ZonedDateTime zonedDateTime = ZonedDateTime.now(ZoneId.of(utc));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy, HH:mm:ss zz");
@@ -73,7 +73,7 @@ public class TimeServlet extends HttpServlet {
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("timezone")) {
+                if (cookie.getName().equals("lastTimezone")) {
                     timezoneCookie = cookie.getValue();
                 }
             }
